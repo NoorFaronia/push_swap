@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_push.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/24 13:29:00 by nfaronia          #+#    #+#             */
+/*   Updated: 2025/12/24 13:29:22 by nfaronia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push(t_list **first_stack, t_list **second_stack)
 {
-	t_list *node;
+	t_list	*node;
 
 	if (!first_stack || !*first_stack)
 		return ;

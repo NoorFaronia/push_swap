@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_rotate.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/24 13:31:20 by nfaronia          #+#    #+#             */
+/*   Updated: 2025/12/24 13:31:34 by nfaronia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	rotate(t_list **stack)
 {
-	t_list *cut;
-	t_list *tail;
+	t_list	*cut;
+	t_list	*tail;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort_small.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/24 13:46:20 by nfaronia          #+#    #+#             */
+/*   Updated: 2025/12/24 14:13:54 by nfaronia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	num_2(t_list **a)
@@ -38,10 +50,9 @@ void	num_3(t_list **a)
 		rra(a);
 }
 
-void	find_min(t_list **a, t_list **b, int size)
+void	find_min(t_list **a, t_list **b, int size, int min)
 {
 	int		i;
-	int		min;
 	t_list	*tmp;
 
 	if (size == 4)
@@ -70,7 +81,10 @@ void	find_min(t_list **a, t_list **b, int size)
 
 void	num_4_5(t_list **a, t_list **b, int size)
 {
-	find_min(a, b, size);
+	int	min;
+
+	min = 0;
+	find_min(a, b, size, min);
 	num_3(a);
 	while (*b)
 		pa(a, b);
