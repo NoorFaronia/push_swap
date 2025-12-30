@@ -12,32 +12,43 @@
 
 #include "push_swap.h"
 
-int	error_num(char *str)
+long	error_num(char *str, long *out)
 {
-	int	i;
+	long	num;
+	int		s;
 
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (str[i] == '\0')
-		return (0);
-	while (str[i])
+	num = 0;
+	s = 1;
+	if (*str == '+' || *str == '-')
 	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
+		if (*str == '-')
+			s = -1;
+		str++;
 	}
+	if (!*str)
+		return (0);
+	while (*str)
+	{
+		if (*str < '0' || *str > '9')
+			return (0);
+		num = num * 10 + (*str - '0');
+		if ((num * s) > INT_MAX || (num * s) < INT_MIN)
+			return (0);
+		str++;
+	}
+	*out = num * s;
 	return (1);
 }
 
-void	error_duplicate(t_list *a, int value)
+int	error_duplicate(t_list *a, int value)
 {
 	while (a)
 	{
 		if (a->value == value)
-			error();
+			return (1);
 		a = a->next;
 	}
+	return (0);
 }
 
 void	free_split(char **split)
@@ -50,7 +61,14 @@ void	free_split(char **split)
 	free(split);
 }
 
-void	error_cases(t_list **a, int argc, char **argv)
+int	if_error(t_list **a, char **split, long *n, int j)
+{
+	if (!error_num(split[j], n) || error_duplicate(*a, (int)(*n)))
+		return (0);
+	return (1);
+}
+
+int	error_cases(t_list **a, int argc, char **argv)
 {
 	int		i;
 	char	**split;
@@ -62,18 +80,20 @@ void	error_cases(t_list **a, int argc, char **argv)
 	{
 		split = ft_split(argv[i], ' ');
 		if (!split)
-			error();
+			return (0);
 		j = 0;
 		while (split[j])
 		{
-			if (!error_num(split[j]))
-				error();
-			n = ft_atol(split[j]);
-			error_duplicate(*a, (int)n);
+			if (!if_error(a, split, &n, j))
+			{
+				free_split(split);
+				return (0);
+			}
 			add_back(a, new_node((int)n));
 			j++;
 		}
 		free_split(split);
 		i++;
 	}
+	return (1);
 }

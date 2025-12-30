@@ -79,12 +79,33 @@ void	find_min(t_list **a, t_list **b, int size, int min)
 	}
 }
 
+static int	revarse_sorted(t_list *a)
+{
+	if (!a)
+		return (1);
+	while (a->next)
+	{
+		if (a->value < a->next->value)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
 void	num_4_5(t_list **a, t_list **b, int size)
 {
 	int	min;
 
 	min = 0;
-	find_min(a, b, size, min);
+	if (revarse_sorted(*a) && size == 5)
+	{
+		rra(a);
+		pb(a, b);
+		rra(a);
+		pb(a, b);
+	}
+	else
+		find_min(a, b, size, min);
 	num_3(a);
 	while (*b)
 		pa(a, b);
