@@ -1,50 +1,62 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_radix_sort.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/31 15:16:28 by nfaronia          #+#    #+#             */
+/*   Updated: 2025/12/31 15:23:56 by nfaronia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int	get_max_bits(t_list **stack)
-{
-	t_list	*head;
-	int		max;
-	int		max_bits;
+#include "push_swap.h"
 
-	head = *stack;
-	max = head->index;
-	max_bits = 0;
-	while (head)
-	{
-		if (head->index > max)
-			max = head->index;
-		head = head->next;
-	}
-	while ((max >> max_bits) != 0)
-		max_bits++;
-	return (max_bits);
+static t_list *min_to_head(t_list *head)
+{
+    t_list *min;
+    t_list *min_prev;
+    t_list *curr;
+    t_list *prev;
+
+    if (!head || !head->next)
+        return head;
+
+    min = head;
+    min_prev = NULL;
+    curr = head;
+    prev = NULL;
+
+    while (curr)
+    {
+        if (curr->value < min->value)
+        {
+            min = curr;
+            min_prev = prev;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if (!min_prev)
+        return head;
+
+    min_prev->next = min->next;
+    min->next = head;
+    head = min;
+
+    return head;
 }
 
-void	radix_sort(t_list **a, t_list **b)
+void radix_sort(t_list **a, t_list **b)
 {
-	t_list	*head_a;
-	int		i;
-	int		j;
-	int		size;
-	int		max_bits;
-
-	i = 0;
-	head_a = *a;
-	size = stack_size(head_a);
-	max_bits = get_max_bits(a);
-	while (i < max_bits)
-	{
-		j = 0;
-		while (j++ < size)
-		{
-			head_a = *a;
-			if (((head_a->index >> i) & 1) == 1)
-				ra(a);
-			else
-				pb(a, b);
-		}
-		while (stack_size(*b) != 0)
-			pa(a, b);
-		i++;
-	}
+    while (*a)
+    {
+        *a = min_to_head(*a);
+        pb(a, b);
+    }
+    while (*b)
+        pa(a, b);
 }

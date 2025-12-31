@@ -6,7 +6,7 @@
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:48:00 by nfaronia          #+#    #+#             */
-/*   Updated: 2025/12/24 14:09:47 by nfaronia         ###   ########.fr       */
+/*   Updated: 2025/12/31 15:33:14 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	sort(t_list **a, t_list **b, int size)
 	else if (size == 4 || size == 5)
 		num_4_5(a, b, size);
 	else
-		radix_sort(a, b, size);
+		radix_sort(a, b);
 }
 
 int	main(int argc, char **argv)
@@ -73,6 +73,7 @@ int	main(int argc, char **argv)
 	}
 	size = stack_size(a);
 	sort(&a, &b, size);
+	print_stack(a);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);

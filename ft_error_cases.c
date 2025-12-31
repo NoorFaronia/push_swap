@@ -6,7 +6,7 @@
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:18:58 by nfaronia          #+#    #+#             */
-/*   Updated: 2025/12/24 13:28:18 by nfaronia         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:50:59 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,13 @@ void	free_split(char **split)
 	free(split);
 }
 
-int	if_error(t_list **a, char **split, long *n, int j)
+static int	if_error(t_list **a, char **split, long *n, int j)
 {
 	if (!error_num(split[j], n) || error_duplicate(*a, (int)(*n)))
+	{
+		free_split(split);
 		return (0);
+	}
 	return (1);
 }
 
@@ -85,10 +88,7 @@ int	error_cases(t_list **a, int argc, char **argv)
 		while (split[j])
 		{
 			if (!if_error(a, split, &n, j))
-			{
-				free_split(split);
 				return (0);
-			}
 			add_back(a, new_node((int)n));
 			j++;
 		}

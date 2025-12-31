@@ -6,7 +6,7 @@
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:49:12 by nfaronia          #+#    #+#             */
-/*   Updated: 2025/12/24 14:10:44 by nfaronia         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:48:49 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_list
 
 // utils
 size_t	ft_strlen(const char *s);
-int	stack_size(t_list *stack);
+int		stack_size(t_list *stack);
 
 // stack
 t_list	*new_node(int value);
@@ -37,8 +37,8 @@ void	free_stack(t_list **stack);
 long	error_num(char *str, long *out);
 char	**ft_split(char const *s, char c);
 void	free_split(char **split);
-int	error_duplicate(t_list *a, int value);
-int	error_cases(t_list **a, int argc, char **argv);
+int		error_duplicate(t_list *a, int value);
+int		error_cases(t_list **a, int argc, char **argv);
 
 // swap
 void	swap(t_list **stack);
