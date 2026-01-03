@@ -5,58 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/31 15:16:28 by nfaronia          #+#    #+#             */
-/*   Updated: 2025/12/31 15:23:56 by nfaronia         ###   ########.fr       */
+/*   Created: 2026/01/03 13:55:01 by nfaronia          #+#    #+#             */
+/*   Updated: 2026/01/03 15:23:52 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-#include "push_swap.h"
-
-static t_list *min_to_head(t_list *head)
+int	max_num(t_list *stack)
 {
-    t_list *min;
-    t_list *min_prev;
-    t_list *curr;
-    t_list *prev;
+	int		m;
+	t_list	*h;
 
-    if (!head || !head->next)
-        return head;
+	if (!stack)
+		return (0);
+	m = stack->value;
+	h = stack->next;
+	while (h)
+	{
+		if (h->value > m)
+			m = h->value;
+		h = h->next;
+	}
+	return (m);
+}
 
-    min = head;
-    min_prev = NULL;
-    curr = head;
-    prev = NULL;
-
-    while (curr)
-    {
-        if (curr->value < min->value)
-        {
-            min = curr;
-            min_prev = prev;
-        }
-        prev = curr;
-        curr = curr->next;
-    }
-
-    if (!min_prev)
-        return head;
-
-    min_prev->next = min->next;
-    min->next = head;
-    head = min;
-
-    return head;
+int get_max_bits(int max)
+{
+    int bits = 0;
+    while ((max >> bits) != 0)
+        bits++;
+    return bits;
 }
 
 void radix_sort(t_list **a, t_list **b)
 {
-    while (*a)
+    int max;
+    int max_bits;
+    int i, j;
+    int size;
+
+    if (!a || !*a)
+        return;
+
+    max = max_num(*a);
+    max_bits = get_max_bits(max);
+
+    size = stack_size(*a);
+
+    for (i = 0; i < max_bits; i++)
     {
-        *a = min_to_head(*a);
-        pb(a, b);
+        j = 0;
+        while (j < size)
+        {
+            if (((*a)->value >> i) & 1)
+                ra(a);
+            else
+                pb(a, b);
+            j++;
+        }
+        while (*b)
+            pa(b, a);
     }
-    while (*b)
-        pa(a, b);
 }

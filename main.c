@@ -6,7 +6,7 @@
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:48:00 by nfaronia          #+#    #+#             */
-/*   Updated: 2025/12/31 15:33:14 by nfaronia         ###   ########.fr       */
+/*   Updated: 2026/01/03 14:44:24 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	main(int argc, char **argv)
 	}
 	size = stack_size(a);
 	sort(&a, &b, size);
-	print_stack(a);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);
