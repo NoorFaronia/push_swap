@@ -9,8 +9,11 @@
 
 ### Compilation
 To compile the project, run:
-`make`
+```
+make
+```
 This will generate the executable push_swap.
+
 Additional Makefile rules:
 ```
 make clean    # remove object files
@@ -20,7 +23,9 @@ make re       # recompile the project
 
 ### Execution
 Run the program with a list of integers as arguments:
-`./push_swap 3 2 5 1 4`
+```
+./push_swap 3 2 5 1 4
+```
 The program will output a list of operations such as:
 ```
 ra
@@ -37,16 +42,24 @@ pa
 ```
 These operations, when executed in order, will sort the stack.
 
-### Checker (Optional)
+### Checker
 To verify that the output correctly sorts the numbers, you can use the checker:
-`ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG`
+```
+ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
+```
 If the result is correct, the checker will display:
-`OK`
+```
+OK
+```
 
-### Number of lines
-`ARG="4 67 3 87 23"; ./push_swap $ARG | wc-l`
+### Number of Lines
+```
+ARG="4 67 3 87 23"; ./push_swap $ARG | wc-l
+```
 The output will be:
-`9`
+```
+9
+```
 
 ## Resources
 
