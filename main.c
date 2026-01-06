@@ -25,7 +25,7 @@ int	stack_size(t_list *stack)
 	return (count);
 }
 
-static int	is_sorted(t_list *a)
+int	is_sorted(t_list *a)
 {
 	if (!a)
 		return (1);

@@ -27,6 +27,7 @@ typedef struct s_list
 // utils
 size_t	ft_strlen(const char *s);
 int		stack_size(t_list *stack);
+int		is_sorted(t_list *a);
 
 // stack
 t_list	*new_node(int value);
