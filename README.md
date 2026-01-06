@@ -51,7 +51,10 @@ If the result is correct, the checker will display:
 ```
 OK
 ```
-
+If the result is not correct, the checker will display:
+```
+KO
+```
 ### Number of Lines
 ```
 ARG="4 67 3 87 23"; ./push_swap $ARG | wc-l
