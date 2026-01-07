@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:48:00 by nfaronia          #+#    #+#             */
-/*   Updated: 2026/01/03 14:44:24 by nfaronia         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:55:08 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	stack_size(t_list *stack)
-{
-	int	count;
-
-	count = 0;
-	while (stack)
-	{
-		count++;
-		stack = stack->next;
-	}
-	return (count);
-}
 
 int	is_sorted(t_list *a)
 {
@@ -38,7 +25,7 @@ int	is_sorted(t_list *a)
 	return (1);
 }
 
-void	sort(t_list **a, t_list **b, int size)
+static void	sort(t_list **a, t_list **b, int size)
 {
 	if (size == 2)
 		num_2(a);
@@ -47,7 +34,7 @@ void	sort(t_list **a, t_list **b, int size)
 	else if (size == 4 || size == 5)
 		num_4_5(a, b, size);
 	else
-		radix_sort(a, b);
+		radix_sort(a, b, size);
 }
 
 int	main(int argc, char **argv)
@@ -60,7 +47,7 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2)
 		return (0);
-	if (!error_cases(&a, argc, argv))
+	if (!error_cases_and_build(&a, argc, argv))
 	{
 		write (2, "Error\n", 6);
 		free_stack(&a);

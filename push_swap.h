@@ -6,7 +6,7 @@
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:49:12 by nfaronia          #+#    #+#             */
-/*   Updated: 2026/01/03 14:44:31 by nfaronia         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:53:45 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <limits.h>
 
 typedef struct s_list
 {
@@ -26,20 +25,20 @@ typedef struct s_list
 
 // utils
 size_t	ft_strlen(const char *s);
-int		stack_size(t_list *stack);
+void	free_split(char **split);
 int		is_sorted(t_list *a);
 
 // stack
 t_list	*new_node(int value);
-void	add_back(t_list **stack, t_list *new);
+void	add_end(t_list **stack, t_list *new);
 void	free_stack(t_list **stack);
+int		stack_size(t_list *stack);
 
 // parsing
-long	error_num(char *str, long *out);
+long	error_num(char *str, long *Number);
 char	**ft_split(char const *s, char c);
-void	free_split(char **split);
 int		error_duplicate(t_list *a, int value);
-int		error_cases(t_list **a, int argc, char **argv);
+int		error_cases_and_build(t_list **a, int argc, char **argv);
 
 // swap
 void	swap(t_list **stack);
@@ -71,9 +70,10 @@ void	num_4_5(t_list **a, t_list **b, int size);
 void	find_min(t_list **a, t_list **b, int size, int min);
 
 //sort_big
-void	radix_sort(t_list **a, t_list **b);
-
-//print
-void	print_stack(t_list *a);
+void	radix_sort(t_list **a, t_list **b, int size);
+void	bubble_sort(int *tab, int size);
+int		max_bits(int max_num);
+void	index_numbers(t_list **stack, int size);
+void	sort_indix(int *arr, int size, t_list *node);
 
 #endif

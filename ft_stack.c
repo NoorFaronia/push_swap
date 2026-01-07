@@ -6,7 +6,7 @@
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:46:48 by nfaronia          #+#    #+#             */
-/*   Updated: 2025/12/24 13:46:49 by nfaronia         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:11:46 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,42 @@ t_list	*new_node(int value)
 	return (node);
 }
 
-void	add_back(t_list **stack, t_list *new)
+void	add_end(t_list **head, t_list *new)
 {
-	t_list	*tmp;
+	t_list	*current;
 
-	if (!*stack)
+	if (!*head)
 	{
-		*stack = new;
+		*head = new;
 		return ;
 	}
-	tmp = *stack;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
+	current = *head;
+	while (current->next)
+		current = current->next;
+	current->next = new;
+}
+
+int	stack_size(t_list *stack)
+{
+	int	count;
+
+	count = 0;
+	while (stack)
+	{
+		count++;
+		stack = stack->next;
+	}
+	return (count);
 }
 
 void	free_stack(t_list **stack)
 {
-	t_list	*tmp;
+	t_list	*next;
 
 	while (*stack)
 	{
-		tmp = (*stack)->next;
+		next = (*stack)->next;
 		free(*stack);
-		*stack = tmp;
+		*stack = next;
 	}
 }

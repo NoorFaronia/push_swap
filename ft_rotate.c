@@ -6,7 +6,7 @@
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:31:20 by nfaronia          #+#    #+#             */
-/*   Updated: 2025/12/24 13:31:34 by nfaronia         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:53:20 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	rotate(t_list **stack)
 {
-	t_list	*cut;
-	t_list	*tail;
+	t_list	*bigen;
+	t_list	*end;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	cut = *stack;
-	*stack = cut->next;
-	cut->next = NULL;
-	tail = *stack;
-	while (tail->next)
-		tail = tail->next;
-	tail->next = cut;
+	bigen = *stack;
+	*stack = bigen->next;
+	bigen->next = NULL;
+	end = *stack;
+	while (end->next)
+		end = end->next;
+	end->next = bigen;
 }
 
 void	ra(t_list **a)

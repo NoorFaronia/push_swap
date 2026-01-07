@@ -6,7 +6,7 @@
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:29:45 by nfaronia          #+#    #+#             */
-/*   Updated: 2025/12/24 13:30:59 by nfaronia         ###   ########.fr       */
+/*   Updated: 2026/01/07 15:03:17 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 void	reverse_rotate(t_list **stack)
 {
-	t_list	*prev;
-	t_list	*curr;
+	t_list	*last;
+	t_list	*before_last;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	prev = NULL;
-	curr = *stack;
-	while (curr->next)
+	last = *stack;
+	before_last = NULL;
+	while (last->next)
 	{
-		prev = curr;
-		curr = curr->next;
+		before_last = last;
+		last = last->next;
 	}
-	prev->next = NULL;
-	curr->next = *stack;
-	*stack = curr;
+	before_last->next = NULL;
+	last->next = *stack;
+	*stack = last;
 }
 
 void	rra(t_list **a)

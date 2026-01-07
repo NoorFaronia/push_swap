@@ -6,13 +6,13 @@
 /*   By: nfaronia <nfaronia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 13:55:01 by nfaronia          #+#    #+#             */
-/*   Updated: 2026/01/03 15:56:51 by nfaronia         ###   ########.fr       */
+/*   Updated: 2026/01/07 17:05:47 by nfaronia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_max_bits(int max_num)
+int	max_bit(int max_num)
 {
 	int	bits;
 
@@ -25,7 +25,7 @@ static int	get_max_bits(int max_num)
 	return (bits);
 }
 
-static void	ft_sort_int_tab(int *tab, int size)
+void	bubble_sort(int *tab, int size)
 {
 	int	i;
 	int	j;
@@ -49,69 +49,74 @@ static void	ft_sort_int_tab(int *tab, int size)
 	}
 }
 
-static void	normalize_numbers(t_list **stack)
+void	sort_indix(int *arr, int size, t_list *node)
 {
-	t_list	*current;
-	int		*arr;
-	int		i;
-	int		size;
+	int	i;
 
-	if (!stack || !*stack)
-		return ;
-	size = stack_size(*stack);
-	arr = malloc(sizeof(int) * size);
-	if (!arr)
-		return ;
-	current = *stack;
-	i = 0;
-	while (current)
-	{
-		arr[i++] = current->value;
-		current = current->next;
-	}
-	ft_sort_int_tab(arr, size);
-	current = *stack;
-	while (current)
+	while (node)
 	{
 		i = 0;
 		while (i < size)
 		{
-			if (arr[i] == current->value)
+			if (arr[i] == node->value)
 			{
-				current->index = i;
+				node->index = i;
 				break ;
 			}
 			i++;
 		}
-		current = current->next;
+		node = node->next;
 	}
+}
+
+void	index_numbers(t_list **stack, int size)
+{
+	t_list	*node;
+	int		*arr;
+	int		i;
+
+	if (!stack || !*stack)
+		return ;
+	arr = malloc(sizeof(int) * size);
+	if (!arr)
+		return ;
+	node = *stack;
+	i = 0;
+	while (node)
+	{
+		arr[i++] = node->value;
+		node = node->next;
+	}
+	bubble_sort(arr, size);
+	node = *stack;
+	sort_indix(arr, size, node);
 	free(arr);
 }
 
-void	radix_sort(t_list **a, t_list **b)
+void	radix_sort(t_list **a, t_list **b, int size)
 {
 	int	max_bits;
-	int	size;
 	int	i;
 	int	j;
 
-	if (!a || !*a || is_sorted(*a))
+	if (!a || !*a)
 		return ;
-	normalize_numbers(a);
-	max_bits = get_max_bits(stack_size(*a) - 1);
-	i = -1;
-	while (++i < max_bits)
+	index_numbers(a, size);
+	max_bits = max_bit(size - 1);
+	i = 0;
+	while (i < max_bits)
 	{
-		size = stack_size(*a);
-		j = -1;
-		while (++j < size)
+		j = 0;
+		while (j < size)
 		{
 			if ((((*a)->index >> i) & 1) == 0)
 				pb(a, b);
 			else
 				ra(a);
+			j++;
 		}
 		while (*b)
 			pa(a, b);
+		i++;
 	}
 }
